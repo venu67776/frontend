@@ -1,7 +1,7 @@
 pipeline {
         agent any 
-        stages{
-                stage('prepare artifacts'){
+        stages {
+                stage('prepare artifacts') {
                         steps{
                                 sh '''
                                 cd static
