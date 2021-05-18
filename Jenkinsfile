@@ -1,9 +1,13 @@
-@Library('todo') _
-
-todo (
-        COMPONENT             : 'frontend',
-        PROJECT_NAME          : "todo",
-        SLAVE_LABEL           : "MASTER",
-        SKIP_NEXUS_UPLOAD     : false,
-        APP_TYPE              : "NODEJS"
-)
+pipeline {
+        agent any 
+        stages{
+                stage('prepare artifacts'){
+                        steps{
+                                sh '''
+                                cd static
+                                zip -r ../frontend.zip *
+                                '''
+                        }
+                }
+        }
+}
