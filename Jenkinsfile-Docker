@@ -1,6 +1,0 @@
-@Library('todo') _
-
-todo (
-        COMPONENT             : 'frontend',
-        PROJECT_NAME          : "todo"
-)
