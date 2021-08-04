@@ -1,6 +1,6 @@
 @Library('todo') _
 
-todo (
+DOCKER (
         COMPONENT             : 'frontend',
         PROJECT_NAME          : "todo"
 )
