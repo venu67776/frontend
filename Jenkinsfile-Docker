@@ -2,6 +2,5 @@
 
 todo (
         COMPONENT             : 'frontend',
-        PROJECT_NAME          : "todo",
-        SLAVE_LABEL           : "DOCKER"
+        PROJECT_NAME          : "todo"
 )
