@@ -1,4 +1,4 @@
-FROM node as build-deps
+FROM node:10 as build-deps
 WORKDIR /app
 COPY . /app
 RUN npm install
