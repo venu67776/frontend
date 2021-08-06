@@ -1,4 +1,4 @@
-FROM node:10 as build-deps
+FROM node:10
 RUN  apt update && apt install nginx -y
 RUN  mkdir /var/www/html/frontend
 WORKDIR /var/www/html/frontend
