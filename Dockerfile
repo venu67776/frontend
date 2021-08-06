@@ -1,0 +1,8 @@
+FROM        nginx
+RUN         mkdir -p /var/www/html/frontend
+COPY        . /var/www/html/frontend
+RUN         npm install
+RUN         npm run build
+COPY        todo-docker.conf /etc/nginx/conf.d/default.conf
+COPY        nginx.conf  /etc/nginx/nginx.conf
+CMD         ["nginx", "-g", "daemon off;"] 
