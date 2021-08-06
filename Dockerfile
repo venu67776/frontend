@@ -1,7 +1,12 @@
-FROM        nginx 
-RUN         apt update &&apt install npm -y
-RUN         mkdir -p /var/www/html/frontend
-COPY        . /var/www/html/frontend
-RUN         npm install --unsafe-perm sass sass-loader node-sass wepy-compiler-sass && npm run build
-COPY        todo-docker.conf /etc/nginx/conf.d/default.conf
-COPY        nginx.conf  /etc/nginx/nginx.conf 
+FROM node:alpine as build-deps
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . ./
+RUN npm run build
+
+# Nginx
+FROM nginx:1.12-alpine
+COPY --from=build-deps /usr/src/app/build /var/www/html/frontend
+COPY        roboshop-docker.conf /etc/nginx/conf.d/default.conf
+CMD ["nginx", "-g", "daemon off;"]
