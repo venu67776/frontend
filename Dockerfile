@@ -1,7 +1,7 @@
-FROM        node:alpine as build-deps
+FROM        node:latest as build-deps
 WORKDIR     /app
 COPY        . /app
-RUN         npm install --unsafe-perm sass sass-loader node-sass wepy-compiler-sass && npm run build
+RUN         npm install --unsafe-perm sass sass-loader node-sass wepy-compiler-sass
 RUN         npm run build
 # Nginx
 FROM         nginx:1.12-alpine
