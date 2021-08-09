@@ -6,6 +6,6 @@ RUN npm run build
 
 FROM nginx:alpine as production-build
 COPY --from=builder /frontend/dist /var/www/html/frontend
-COPY --from=builder /frontned/todo-docker.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /frontend/todo-docker.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
