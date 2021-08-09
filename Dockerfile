@@ -1,6 +1,11 @@
-FROM        node:10
-RUN         apt update && apt install nginx -y
-RUN         mkdir -p /var/www/html/frontend
-COPY        . /var/www/html/frontend
-RUN         npm install --unsafe-perm sass sass-loader node-sass wepy-compiler-sass
-COPY        todo-docker.conf /etc/nginx/conf.d/default.conf
+FROM node:10 as build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx:stable-alpine
+COPY --from=build-stage /app/todo-docker.conf /usr/share/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
