@@ -1,10 +1,8 @@
 FROM node:10-alpine as builder
 WORKDIR /frontend
-COPY package*.json ./
+COPY  . /frontend
 RUN npm install
 RUN npm run build
-COPY . /frontend
-
 
 FROM nginx:alpine as production-build
 COPY --from=builder /frontend/dist /var/www/html/frontend
