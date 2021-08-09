@@ -8,4 +8,4 @@ FROM nginx
 COPY --from=builder /frontend/dist /var/www/html/frontend
 COPY --from=builder /frontend/todo-docker.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
